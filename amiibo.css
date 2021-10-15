@@ -24,6 +24,12 @@ html, .page, .navbar {
     max-width: 4rem;
 }
 
+hr {
+    width: 75%;
+    margin-top: 0;
+    color: black !important;
+}
+
 .content {
     display: flex;
     flex-direction: column;

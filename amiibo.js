@@ -415,11 +415,26 @@ function removeChildNodes(node) // removes child nodes from element
     }
 }
 
+function removeDefaultMessages() // removes default message from character select or unreleased amiibos
+{
+    if(document.getElementById("default-text") !== null)
+    {
+        document.getElementById("default-text").remove();
+    }
+    if(document.getElementById("error-text") !== null)
+    {
+        document.getElementById("error-text").remove();
+    }
+}
+
 function resetData() //calls removeChildNodes on needed divs
 {
+    removeDefaultMessages();
+
     removeChildNodes(imageBox);
     removeChildNodes(nameBox);
     removeChildNodes(releaseBox);
+    
 }
 
 
@@ -456,25 +471,21 @@ async function fetchAmiiboData(url) //Async function to fetch the data from the 
 
 async function fillInAmiiboHtml(data) //Take in the character name and then fill in correspoding HTML
 {   
-    if(amiiboBox.childElementCount > 0)
+    if(amiiboBox.childElementCount > 0) // make sure to get rid of any pre-existing data to be replaced
     {
-        resetData();
-        
-        if(document.getElementById("default-text") !== null)
-        {
-            document.getElementById("default-text").remove();
-        }
+        resetData();  
     }
 
     let url = "https://www.amiiboapi.com/api/amiibo/?head=" + getCharacterHead(data);
 
     let amiiboData = await fetchAmiiboData(url);
 
+    console.log(amiiboData);
+
     if(amiiboData !== undefined)
     {
         amiiboBox.style.justifyContent = "space-evenly";
 
-        console.log(amiiboData);
 
         //create image element and change src to amiibo image
         let charImage = document.createElement('img');
@@ -529,6 +540,28 @@ async function fillInAmiiboHtml(data) //Take in the character name and then fill
 
         }
     }  
+    else if(document.getElementById("error-text") === null && selectBox.value !== "Select Character")
+    {
+        amiiboBox.style.justifyContent = "center";
+
+        let errorText = document.createTextNode("This character's Amiibo has not been released yet.");
+        let errorH2 = document.createElement("h2");
+        errorH2.id = "error-text";
+        errorH2.appendChild(errorText);
+
+        amiiboBox.appendChild(errorH2);
+    }
+    else
+    {
+        amiiboBox.style.justifyContent = "center";
+
+        let defaultText = document.createTextNode("Amiibo info will appear here!");
+        let defaultH2 = document.createElement("h2");
+        defaultH2.id = "default-text";
+        defaultH2.appendChild(defaultText);
+
+        amiiboBox.appendChild(defaultH2);
+    }
 }
 
 
