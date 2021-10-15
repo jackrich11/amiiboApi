@@ -10,6 +10,10 @@ const CHAR_ARRAY = ["Mario", "Donkey Kong", "Link", "Samus", "Dark Samus", "Yosh
 "Pyra Mythra", "Kazuya", "Mii Brawler", "Mii Swordsman", "Mii Gunner" ]
 
 const OBJ_ARRAY = [
+    {
+        name: "Select Character",
+        head: "-1"
+    },
     { 
         name: "Mario",
         head: "00000000"
@@ -64,19 +68,19 @@ const OBJ_ARRAY = [
     },
     { 
         name: "Peach",
-        head: ""
+        head: "00020000"
     },
     { 
         name: "Daisy",
-        head: ""
+        head: "00130000"
     },
     { 
         name: "Bowser",
-        head: ""
+        head: "00050000"
     },
     { 
         name: "Ice Climbers",
-        head: ""
+        head: "078F0000"
     },
     { 
         name: "Sheik",
@@ -352,33 +356,195 @@ const OBJ_ARRAY = [
 
 ]
 
-const NUM_ARRAY = ["00000000", "00080000"]
-/*
+function getCharacterHead(name)
+{
+    for(let character of OBJ_ARRAY)
+    {
+        if(name === character.name)
+        {
+            return character.head;
+        }
+    }
+    return "-1";
+}
+
+function getFlagLink(country) //get flag icon link from abbreviation
+{
+    if(country === "au")
+    {
+        return 'images/australian-flag.png';
+    }
+    else if(country === "eu")
+    {
+        return 'images/european-union-flag.png';
+    }
+    else if(country === "jp")
+    {
+        return 'images/japanese-flag.png';
+    }
+    else if(country === "na")
+    {
+        return 'images/american-flag.png';
+    }
+    else
+    {
+        return "Country Not Found";
+    }
+}
+
+function getCountryName(country) //get full country name from abbbreviation
+{
+    if(country === "au")
+    {
+        return "Australia";
+    }
+    else if(country === "eu")
+    {
+        return "Europe";
+    }
+    else if(country === "jp")
+    {
+        return "Japan";
+    }
+    else if(country === "na")
+    {
+        return "North America";
+    }
+    else
+    {
+        return "Country Not Found";
+    }
+    
+}
+
+function removeChildNodes(node) // removes child nodes from element
+{
+    while(node.firstChild)
+    {
+        node.removeChild(node.firstChild);
+    }
+}
+
+function resetData() //calls removeChildNodes on needed divs
+{
+    removeChildNodes(imageBox);
+    removeChildNodes(nameBox);
+    removeChildNodes(releaseBox);
+}
 
 
-*/
+//define constants for important html elements
 const selectBox = document.getElementById("char-options");
+const amiiboBox = document.getElementById("amiibo-box");
+const imageBox = document.getElementById("image-box");
+const infoBox = document.getElementById("info-box");
+const nameBox = document.getElementById("name-box");
+const releaseBox = document.getElementById("release-box");
 
-for(let character of CHAR_ARRAY)
+for(let character of OBJ_ARRAY) //Populate drop-down menu with character choices
 {
     let newOption = document.createElement("option");
-    newOption.value = character;
-    newOption.innerText = character;
+    newOption.value = character.name;
+    newOption.innerText = character.name;
 
     selectBox.appendChild(newOption);
 }
 
-document.getElementById("get-button").addEventListener("click", function() {
-    //console.log(selectBox.value);
-    document.querySelector("#amiibo-box h2").innerText = selectBox.value;
-})
+async function fetchAmiiboData(url) //Async function to fetch the data from the API and return the json object
+{
+    try {
+        const responseData = await fetch(url).then((response) => response.json());
+        console.log(responseData);
+        return responseData.amiibo[0];
+    }
+    catch(err)
+    {
+        console.log(`Something went wrong... ${err}`);
+        return;
+    }  
+}
+
+async function fillInAmiiboHtml(data) //Take in the character name and then fill in correspoding HTML
+{   
+    if(amiiboBox.childElementCount > 0)
+    {
+        resetData();
+        
+        if(document.getElementById("default-text") !== null)
+        {
+            document.getElementById("default-text").remove();
+        }
+    }
+
+    let url = "https://www.amiiboapi.com/api/amiibo/?head=" + getCharacterHead(data);
+
+    let amiiboData = await fetchAmiiboData(url);
+
+    if(amiiboData !== undefined)
+    {
+        amiiboBox.style.justifyContent = "space-evenly";
+
+        console.log(amiiboData);
+
+        //create image element and change src to amiibo image
+        let charImage = document.createElement('img');
+        charImage.src = amiiboData["image"];
+        charImage.class = "char-image";
+
+        //append image to image-box div
+        imageBox.appendChild(charImage);
+
+        console.log(amiiboData);
+
+        //create name and series text
+        let nameText = document.createTextNode(amiiboData["character"]);
+        let nameElement = document.createElement("h1");
+        //nameElement.className = "name-text";
+
+        let seriesText = document.createTextNode(`Game Series: ${amiiboData["gameSeries"]}`);
+        let seriesElement = document.createElement("h5");
+        
+        //append name/series nodes
+        nameElement.appendChild(nameText);
+        seriesElement.appendChild(seriesText);
+        nameBox.appendChild(nameElement);
+        nameBox.appendChild(seriesElement);
+
+        let releaseDatesText = document.createTextNode("Amiibo Release Dates:");
+        let releaseDates = document.createElement("p");
+        releaseDates.id = "release-dates-text";
+        releaseDates.appendChild(releaseDatesText);
+
+        releaseBox.appendChild(releaseDates);
+
+        //create and append release dates
+        for(let date in amiiboData.release)
+        {
+            let releaseDiv = document.createElement("div");
+            releaseDiv.className = "release-inner-box";
+
+            let flagIcon = document.createElement("img");
+            flagIcon.src = getFlagLink(date);
+
+            let dateText = document.createTextNode(`${getCountryName(date)} - ${amiiboData.release[date]}`);
+            let dateElement = document.createElement("p");
+            dateElement.appendChild(dateText);
+
+            releaseDiv.appendChild(flagIcon);
+            releaseDiv.appendChild(dateElement);
+
+            releaseBox.appendChild(releaseDiv);
 
 
-let url = "https://www.amiiboapi.com/api/amiibo/?character=zelda";
 
-fetch(url)
-.then(function(response) {
-    return response.json();
-}).then(function(json) {
-    console.log(json);
-})
+        }
+    }  
+}
+
+
+//Add click event to 'get' button to fill in chosen character data
+document.getElementById("get-button").addEventListener("click", () => {
+    fillInAmiiboHtml(selectBox.value)
+});
+
+

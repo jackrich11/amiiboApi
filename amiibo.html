@@ -7,6 +7,9 @@
        <!-- <link rel="stylesheet" href="index.css"> -->
         <link rel="stylesheet" href="amiibo.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,900;1,700&display=swap" rel="stylesheet">
     </head>
     <body>
 
@@ -44,38 +47,24 @@
 
             <form id="amiibo-form">
               <select name="character" id="char-options">
+                <!--<option value="default" selected>Select Character</option>-->
               </select>
               <button type="button" id="get-button">Get</button>
             </form>
 
             <div id="amiibo-box">
-              <h2>Amiibo info here</h2>
+              <h2 id="default-text">Amiibo info will appear here!</h2>
+              <div id="image-box">
+              </div>
+              <div id="info-box">
+                <div id="name-box">
+                </div>
+                <div id="release-box">
+                </div>
+              </div>
 
 
             </div>
-
-
-
-            <!--<h1 class="intro">Amiibo</h1>
-            
-            <div class="option-group">
-              <div class="option-button">
-                <img src="https://img.icons8.com/material-rounded/24/000000/super-smash-bros.png"/>
-                <h3 class="option-title">Smashdown</h3>
-              </div>
-              <div class="option-button">
-                <img src="https://img.icons8.com/ios-glyphs/30/000000/statue.png"/>      
-                <h3 class="option-title">Amiibo Info</h3>         
-                </div>
-              <div class="option-button">
-                <img src="https://img.icons8.com/ios-glyphs/30/000000/question-mark.png"/> 
-                <h3 class="option-title">Random Character</h3>               
-              </div>
-              <div class="option-button">
-                <img src="https://img.icons8.com/material-outlined/24/000000/list.png"/>   
-                <h3 class="option-title">Character Info</h3>             
-              </div>
-            </div> -->
           </div> 
 
 
@@ -84,7 +73,7 @@
         
         <div class="footer">
           <p>Created by Jack Richardson</p>
-          <a class="github" href="https://github.com/jackrich11/smashdownSite" target=_blank>Github Repository</a>
+          <a class="github" href="https://github.com/jackrich11/amiiboApi" target=_blank>Github Repository</a>
           <a class="sponser" href="https://icons8.com/icon/yQo6yvAjJaAQ/super-smash-bros">Super Smash Bros icon by Icons8</a>
 
         </div>
