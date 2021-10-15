@@ -1,13 +1,3 @@
-const CHAR_ARRAY = ["Mario", "Donkey Kong", "Link", "Samus", "Dark Samus", "Yoshi", "Kirby", "Fox", "Pikachu", "Luigi",
-"Ness", "Captain Falcon", "Jigglypuff", "Peach", "Daisy", "Bowser", "Ice Climbers", "Sheik",
-"Zelda", "Dr Mario", "Pichu", "Falco", "Marth", "Lucina", "Young Link", "Ganondorf", "Mewtwo",
-"Roy", "Chrom", "Mr Game & Watch", "Meta Knight", "Pit", "Dark Pit", "Zero Suit Samus", "Wario",
-"Snake", "Ike", "Pokémon Trainer", "Diddy Kong", "Lucas", "Sonic", "King Dedede", "Olimar", "Lucario",
-"ROB", "Toon Link", "Wolf", "Villager", "Mega Man", "Rosalina", "Wii Fit Trainer", "Litle Mac",
-"Greninja", "Palutena", "Pac-Man", "Robin", "Shulk", "Bowser Jr.", "Duck Hunt", "Ryu", "Ken", "Cloud",
-"Corrin", "Bayonetta", "Inkling", "Ridley", "Simon", "Richter", "King K Rool", "Incineroar", 
-"Piranha Plant", "Joker", "Hero", "Banjo & Kazooie", "Terry", "Byleth", "MinMin", "Steve", "Sephiroth",
-"Pyra Mythra", "Kazuya", "Mii Brawler", "Mii Swordsman", "Mii Gunner" ]
 
 const OBJ_ARRAY = [
     {
@@ -84,271 +74,271 @@ const OBJ_ARRAY = [
     },
     { 
         name: "Sheik",
-        head: ""
+        head: "01010100"
     },
     { 
         name: "Zelda",
-        head: ""
+        head: "01010000"
     },
     { 
         name: "Dr Mario",
-        head: ""
+        head: "00000100"
     },
     { 
         name: "Pichu",
-        head: ""
+        head: "19AC0000"
     },
     { 
         name: "Falco",
-        head: ""
+        head: "05810000"
     },
     { 
         name: "Marth",
-        head: ""
+        head: "21000000"
     },
     { 
         name: "Lucina",
-        head: ""
+        head: "21020000"
     },
     { 
         name: "Young Link",
-        head: ""
+        head: "01000000"
     },
     { 
         name: "Ganondorf",
-        head: ""
+        head: "01020100"
     },
     { 
         name: "Mewtwo",
-        head: ""
+        head: "19960000"
     },
     { 
         name: "Roy",
-        head: ""
+        head: "21040000"
     },
     { 
         name: "Chrom",
-        head: ""
+        head: "21080000"
     },
     { 
         name: "Mr Game & Watch",
-        head: ""
+        head: "07800000"
     },
     { 
         name: "Meta Knight",
-        head: ""
+        head: "1F010000"
     },
     { 
         name: "Pit",
-        head: ""
+        head: "07400000"
     },
     { 
         name: "Dark Pit",
-        head: ""
+        head: "07410000"
     },
     { 
         name: "Zero Suit Samus",
-        head: ""
+        head: "05C00100"
     },
     { 
         name: "Wario",
-        head: ""
+        head: "00070000"
     },
     { 
         name: "Snake",
-        head: ""
+        head: "37800000"
     },
     { 
         name: "Ike",
-        head: ""
+        head: "21010000"
     },
     { 
         name: "Pokémon Trainer",
-        head: ""
+        head: "1D400000"
     },
     { 
         name: "Diddy Kong",
-        head: ""
+        head: "00090000"
     },
     { 
         name: "Lucas",
-        head: ""
+        head: "22810000"
     },
     { 
         name: "Sonic",
-        head: ""
+        head: "32000000"
     },
     { 
         name: "King Dedede",
-        head: ""
+        head: "1F020000"
     },
     { 
         name: "Olimar",
-        head: ""
+        head: "06400100"
     },
     { 
         name: "Lucario",
-        head: ""
+        head: "1AC00000"
     },
     { 
         name: "ROB",
-        head: ""
+        head: "07810000"
     },
     { 
         name: "Toon Link",
-        head: ""
+        head: "01000100"
     },
     { 
         name: "Wolf",
-        head: ""
+        head: "05840000"
     },
     { 
         name: "Villager",
-        head: ""
+        head: "01800000"
     },
     { 
         name: "Mega Man",
-        head: ""
+        head: "34800000"
     },
     { 
-        name: "Rosalina",
-        head: ""
+        name: "Rosalina & Luma",
+        head: "00040100"
     },
     { 
         name: "Wii Fit Trainer",
-        head: ""
+        head: "07000000"
     },
     { 
         name: "Little Mac",
-        head: ""
+        head: "06C00000"
     },
     { 
         name: "Greninja",
-        head: ""
+        head: "1B920000"
     },
     { 
         name: "Palutena",
-        head: ""
+        head: "07420000"
     },
     { 
         name: "Pac-Man",
-        head: ""
+        head: "33400000"
     },
     { 
         name: "Robin",
-        head: ""
+        head: "21030000"
     },
     { 
         name: "Shulk",
-        head: ""
+        head: "22400000"
     },
     { 
         name: "Bowser Jr",
-        head: ""
+        head: "00060000"
     },
     { 
         name: "Duck Hunt",
-        head: ""
+        head: "07820000"
     },
     { 
         name: "Ryu",
-        head: ""
+        head: "34C00000"
     },
     { 
         name: "Ken",
-        head: ""
+        head: "34C10000"
     },
     { 
         name: "Cloud",
-        head: ""
+        head: "36000000"
     },
     { 
         name: "Corrin",
-        head: ""
+        head: "21050000"
     },
     { 
         name: "Bayonetta",
-        head: ""
+        head: "32400000"
     },
     { 
         name: "Inkling",
-        head: ""
+        head: "08000100"
     },
     { 
         name: "Ridley",
-        head: ""
+        head: "05C20000"
     },
     { 
         name: "Simon",
-        head: ""
+        head: "37C00000"
     },
     { 
         name: "Richter",
-        head: ""
+        head: "37C10000"
     },
     { 
         name: "King K Rool",
-        head: ""
+        head: "00C00000"
     },
     { 
         name: "Incineroar",
-        head: ""
+        head: "1BD70000"
     },
     { 
         name: "Piranha Plant",
-        head: ""
+        head: "00240000"
     },
     { 
         name: "Joker",
-        head: ""
+        head: "3A000000"
     },
     { 
         name: "Hero",
-        head: ""
+        head: "36400000"
     },
     { 
         name: "Banjo & Kazooie",
-        head: ""
+        head: "3B400000"
     },
     { 
         name: "Terry",
-        head: ""
+        head: "3C800000"
     },
     { 
         name: "Byleth",
-        head: ""
+        head: "210B0000"
     },
     { 
         name: "MinMin",
-        head: ""
+        head: "-1"
     },
     { 
         name: "Steve",
-        head: ""
+        head: "-1"
     },
     { 
         name: "Sephiroth",
-        head: ""
+        head: "-1"
     },
     { 
         name: "Pyra Mythra",
-        head: ""
+        head: "-1"
     },
     { 
         name: "Kazuya",
-        head: ""
+        head: "-1"
     },
     { 
         name: "Mii Brawler",
-        head: ""
+        head: "07C00000"
     },
     { 
-        name: "Mii Swordsman",
-        head: ""
+        name: "Mii Swordfighter",
+        head: "07C00100"
     },
     { 
         name: "Mii Gunner",
-        head: ""
+        head: "07C00200"
     },
 
 
